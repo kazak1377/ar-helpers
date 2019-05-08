@@ -1,7 +1,7 @@
 {
     "name": "altrecipe/helpers",
     "type": "library",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Some helpers classes to be shared between altRecipe projects",
     "keywords": ["helpers","internal","altRecipe"],
     "homepage": "https://altrecipe.com",
@@ -14,7 +14,9 @@
         }
     ],
     "require": {
-        "illuminate/container": "^5.8"
+        "illuminate/container": "^5.8",
+        "illuminate/view": "^5.8",
+        "illuminate/http": "^5.8"
     },
     "autoload": {
         "psr-4": {

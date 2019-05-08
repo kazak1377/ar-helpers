@@ -9,6 +9,9 @@
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 if (! function_exists('app')) {
 	/**
@@ -57,3 +60,27 @@ if (! function_exists('config')) {
 	}
 }
 
+if (! function_exists('response')) {
+	/**
+	 * Return a new response from the application.
+	 *
+	 * @param View|string|array|null $content
+	 * @param int $status
+	 * @param array $headers
+	 *
+	 * @return Response|ResponseFactory
+	 * @throws BindingResolutionException
+	 */
+	function response($content = '', $status = 200, array $headers = [])
+	{
+		$factory = app(ResponseFactory::class);
+
+		if (func_num_args() === 0) {
+			return $factory;
+		}
+
+		/** @noinspection PhpMethodParametersCountMismatchInspection */
+		/** @noinspection PhpParamsInspection */
+		return $factory->make($content, $status, $headers);
+	}
+}

@@ -1,6 +1,7 @@
 {
     "name": "altrecipe/helpers",
     "type": "library",
+    "version": "0.0.3",
     "description": "Some helpers classes to be shared between altRecipe projects",
     "keywords": ["helpers","internal","altRecipe"],
     "homepage": "https://altrecipe.com",

@@ -6,7 +6,7 @@
  * Time: 16:53
  */
 
-namespace ArHelpers;
+namespace ArHelpers\Error;
 
 
 interface iError {

@@ -6,8 +6,10 @@
  * Time: 16:54
  */
 
-namespace ArHelpers;
+namespace ArHelpers\Error;
 
+
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 abstract class BaseError implements iError {
 	public $message;
@@ -20,7 +22,11 @@ abstract class BaseError implements iError {
 	}
 
 	public function __construct() {
-		$this->code = config('app.errorPrefix').$this->code;
+		try {
+			$this->code = config('app.errorPrefix') . $this->code;
+		} catch (BindingResolutionException $e) {
+			$this->code = "00".$this->code;
+		}
 	}
 
 	public function toArray() {

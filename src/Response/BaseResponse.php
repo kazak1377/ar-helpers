@@ -11,7 +11,7 @@ namespace ArHelpers\Response;
 
 
 use ArHelpers\Error\BaseError;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use function response;
@@ -20,10 +20,16 @@ abstract class BaseResponse {
 	public $code = 200;
 	public $message = "OK";
 	public $data = [];
-	public $error = NULL;
+	/** @var null|BaseError|array */
+	public $error = null;
+
 	public $warnings = NULL;
 
 	public function toArray() {
+		if (is_subclass_of($this->error, BaseError::class)) {
+			$this->error = $this->error->toArray();
+		}
+
 		return [
 			'code' => $this->code,
 			'message' => $this->message,
@@ -31,6 +37,10 @@ abstract class BaseResponse {
 			'error' => $this->error,
 			'warnings' => $this->warnings
 		];
+	}
+
+	public function hasErrors() {
+		return $this->error !== null;
 	}
 
 	public function setData($data) {
@@ -60,7 +70,7 @@ abstract class BaseResponse {
 	public function send() {
 		try {
 			return response($this->toArray(), 200);
-		} catch (BindingResolutionException $e) {
+		} catch (Exception $e) {
 			return new Response();
 		}
 	}

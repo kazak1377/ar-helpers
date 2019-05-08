@@ -1,0 +1,19 @@
+{
+    "name": "altrecipe/helpers",
+    "type": "library",
+    "version": "0.0.1",
+    "description": "Some helpers classes to be shared between altRecipe projects",
+    "keywords": ["helpers","internal","altRecipe"],
+    "homepage": "https://altrecipe.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxim Kozachenko",
+            "email": "mk@altrecipe.com",
+            "role": "CEO"
+        }
+    ],
+    "require": {
+
+    }
+}

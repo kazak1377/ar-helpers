@@ -12,28 +12,31 @@ namespace ArHelpers\Error;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 abstract class BaseError implements iError {
-	public $message;
-	public $code;
-	public $description = '';
-	public $httpCode = 400;
+    public $message;
+    public $code;
+    public $description = '';
+    public $httpCode = 400;
 
-	public function __toString() {
-		return json_encode($this->toArray());
-	}
+    public function __toString() {
+        return json_encode($this->toArray());
+    }
 
-	public function __construct() {
-		try {
-			$this->code = config('app.errorPrefix') . $this->code;
-		} catch (BindingResolutionException $e) {
-			$this->code = "00".$this->code;
-		}
-	}
+    public function __construct() {
+        try {
+            $this->code = config(
+                    'app.errorPrefix',
+                    env('APP_ERROR_PREFIX', 'unset')
+                ) . $this->code;
+        } catch (BindingResolutionException $e) {
+            $this->code = "00" . $this->code;
+        }
+    }
 
-	public function toArray() {
-		return [
-			'code' => $this->code,
-			'message' => $this->message,
-			'desc' => $this->description,
-		];
-	}
+    public function toArray() {
+        return [
+            'code' => $this->code,
+            'message' => $this->message,
+            'desc' => $this->description,
+        ];
+    }
 }

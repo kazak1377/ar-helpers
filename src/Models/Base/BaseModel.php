@@ -6,7 +6,7 @@
  * Time: 17:26
  */
 
-namespace ARCrossplanModuleModels\Base;
+namespace ArHelpers\Models\Base;
 
 
 use Eloquent;

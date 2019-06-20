@@ -8,7 +8,6 @@
 
 namespace ArHelpers\Models\Base;
 
-
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

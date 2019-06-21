@@ -6,10 +6,7 @@
  * Time: 17:33
  */
 
-namespace App\Response;
-
-
-use ArHelpers\Response\BaseResponse;
+namespace ArHelpers\Response;
 
 class DeletedResponse extends BaseResponse {
 	public $code = 202;

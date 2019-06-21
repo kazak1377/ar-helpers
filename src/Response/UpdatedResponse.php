@@ -6,10 +6,7 @@
  * Time: 17:24
  */
 
-namespace App\Response;
-
-
-use ArHelpers\Response\BaseResponse;
+namespace ArHelpers\Response;
 
 class UpdatedResponse extends BaseResponse {
 	public $code = 200;

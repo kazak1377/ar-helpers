@@ -14,7 +14,6 @@ use ArHelpers\Error\BaseError;
 use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
-use function response;
 
 abstract class BaseResponse {
 	public $code = 200;
@@ -69,7 +68,9 @@ abstract class BaseResponse {
 	 */
 	public function send() {
 		try {
-			return response($this->toArray(), 200);
+		    $resp = new Response();
+		    $resp->setContent($this->toArray());
+			return $resp;
 		} catch (Exception $e) {
 			return new Response();
 		}

@@ -39,4 +39,19 @@ abstract class BaseError implements iError {
             'desc' => $this->description,
         ];
     }
+
+    public function setDescription($desc) {
+        $this->description = $desc;
+        return $this;
+    }
+
+    public function setCode($code) {
+        $this->code = $code;
+        return $this;
+    }
+
+    public function setMessage($message) {
+        $this->$message = $message;
+        return $this;
+    }
 }

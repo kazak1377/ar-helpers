@@ -51,7 +51,7 @@ abstract class BaseError implements iError {
     }
 
     public function setMessage($message) {
-        $this->$message = $message;
+        $this->message = $message;
         return $this;
     }
 }

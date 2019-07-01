@@ -42,6 +42,16 @@ abstract class BaseResponse {
 		return $this->error !== null;
 	}
 
+	public function setMessage($message) {
+	    $this->message = $message;
+	    return $this;
+    }
+
+    public function setCode($code) {
+        $this->code = $code;
+        return $this;
+    }
+
 	public function setData($data) {
 		$this->data = $data;
 		return $this;

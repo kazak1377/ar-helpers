@@ -18,7 +18,7 @@ use Illuminate\Http\Response;
 abstract class BaseResponse {
 	public $code = 200;
 	public $message = "OK";
-	public $data = [];
+	public $data = NULL;
 	/** @var null|BaseError|array */
 	public $error = null;
 

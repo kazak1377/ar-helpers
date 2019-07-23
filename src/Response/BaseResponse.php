@@ -69,6 +69,13 @@ abstract class BaseResponse {
 		return $this;
 	}
 
+	public function setErrorIf($condition, BaseError $error) {
+	    if ($condition) {
+	        return $this->setError($error);
+        }
+	    return $this;
+    }
+
 	public function json() {
 		return json_encode($this->toArray());
 	}

@@ -69,8 +69,8 @@ abstract class BaseResponse {
 		return $this;
 	}
 
-	public function setErrorIf($condition, BaseError $error) {
-	    if ($condition) {
+	public function setErrorIf($condition, ?BaseError $error) {
+	    if ($condition && !is_null($error)) {
 	        return $this->setError($error);
         }
 	    return $this;

@@ -13,6 +13,7 @@
         }
     ],
     "require": {
+        "php" : "^7.3",
         "laravel/lumen-framework": "5.8.*",
         "ext-json": "*"
     },

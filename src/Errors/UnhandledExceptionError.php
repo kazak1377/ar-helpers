@@ -12,7 +12,8 @@ namespace ArHelpers\Errors;
 use ArHelpers\Error\BaseError;
 
 class UnhandledExceptionError extends BaseError {
-    public $code = '500';
+    public $httpCode = '500';
+    public $code = '65';
     public $message = 'Unhandled exception';
 
     public function __construct($e) {

@@ -11,6 +11,7 @@ use ArHelpers\Error\BaseError;
 
 class SavingError extends BaseError {
 	public $httpCode = 400;
+    public $code = '64';
 	public $message = "Can't save ";
 
 	public function __construct($entityName) {

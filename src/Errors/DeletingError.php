@@ -11,6 +11,7 @@ use ArHelpers\Error\BaseError;
 
 class DeletingError extends BaseError {
 	public $httpCode = 400;
+	public $code = '61';
 	public $message = "Can't delete ";
 
 	public function __construct($entityName) {

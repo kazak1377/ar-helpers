@@ -11,6 +11,7 @@ use ArHelpers\Error\BaseError;
 
 class ValidationError extends BaseError {
 	public $httpCode = 400;
+    public $code = '66';
 	public $message = "validation error";
 
 	public function __construct($entityName) {

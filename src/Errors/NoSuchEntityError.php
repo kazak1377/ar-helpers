@@ -11,6 +11,7 @@ use ArHelpers\Error\BaseError;
 
 class NoSuchEntityError extends BaseError {
 	public $httpCode = 404;
+    public $code = '62';
 	public $message = "entity not found";
 
 	public function __construct($entityName) {

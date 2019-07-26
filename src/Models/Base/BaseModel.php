@@ -31,4 +31,39 @@ class BaseModel extends Model {
 	}
 
 	public $rules;
+
+    protected static function callMethod($method, $params) {
+        $class = get_called_class();
+        if (method_exists($class, $method)) {
+            $class::$method($params);
+        }
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        self::creating(function($model) {
+            self::callMethod('beforeCreate', $model);
+        });
+
+        self::created(function($model) {
+            self::callMethod('afterCreate', $model);
+        });
+
+        self::updating(function($model) {
+            self::callMethod('beforeUpdate', $model);
+        });
+
+        self::updated(function($model) {
+            self::callMethod('afterUpdate', $model);
+        });
+
+        self::deleting(function($model) {
+            self::callMethod('beforeDelete', $model);
+        });
+
+        self::deleted(function($model) {
+            self::callMethod('afterDelete', $model);
+        });
+    }
 }

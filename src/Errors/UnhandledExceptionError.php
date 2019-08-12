@@ -13,7 +13,7 @@ use ArHelpers\Error\BaseError;
 use Throwable;
 
 class UnhandledExceptionError extends BaseError {
-    public $httpCode = '500';
+    public $httpCode = 500;
     public $code = '65';
     public $message = 'Unhandled exception';
 

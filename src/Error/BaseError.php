@@ -16,6 +16,7 @@ abstract class BaseError implements iError {
     public $code;
     public $description = '';
     public $httpCode = 400;
+    public $request = [];
 
     public function __toString() {
         return json_encode($this->toArray());
@@ -37,11 +38,17 @@ abstract class BaseError implements iError {
             'code' => $this->code,
             'message' => $this->message,
             'desc' => $this->description,
+            'request' => $this->request
         ];
     }
 
     public function setDescription($desc) {
         $this->description = $desc;
+        return $this;
+    }
+
+    public function setRequestBody($request) {
+        $this->request = $request;
         return $this;
     }
 

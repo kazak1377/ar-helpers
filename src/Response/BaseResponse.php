@@ -14,7 +14,7 @@ use ArHelpers\Error\BaseError;
 use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 
 abstract class BaseResponse {
 	public $code = 200;
@@ -64,7 +64,7 @@ abstract class BaseResponse {
 	}
 
 	public function setError(BaseError $error) {
-	    $error->setRequestBody(Input::all());
+	    $error->setRequestBody(Request::input());
 		$this->error = $error;
 		$this->code = $error->httpCode;
 		$this->message = $error->message;

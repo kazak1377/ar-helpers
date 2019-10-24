@@ -94,4 +94,15 @@ abstract class BaseResponse {
 			return new Response();
 		}
 	}
+
+	public function sendAndDie() {
+        try {
+            $resp = new Response();
+            $resp->setContent($this->toArray());
+            $resp->send();
+        } catch (Exception $e) {
+            (new Response())->send();
+        }
+        die();
+    }
 }

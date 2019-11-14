@@ -6,7 +6,9 @@ namespace ArHelpers\Helpers;
 
 use ArHelpers\Errors\ValidationError;
 use ArHelpers\Response\BaseResponse;
+use ArHelpers\Response\ErrorResponse;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 trait RequestValidationTrait {
     /**
@@ -36,5 +38,15 @@ trait RequestValidationTrait {
             }
         }
         return true;
+    }
+
+    protected function validateRequest($methodName, $rules) {
+        $validator = Validator::make(Request::input(), $rules);
+        $vhelper = new ValidationHelper($methodName, $validator);
+        if ($vhelper->hasErrors) {
+            (new ErrorResponse())
+                ->setError($vhelper->error)
+                ->sendAndDie();
+        }
     }
 }

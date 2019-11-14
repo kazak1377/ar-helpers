@@ -40,8 +40,8 @@ trait RequestValidationTrait {
         return true;
     }
 
-    protected function validateRequest($methodName, $rules) {
-        $validator = Validator::make(Request::input(), $rules);
+    protected function validateRequest($methodName, $rules, $messages = []) {
+        $validator = Validator::make(Request::input(), $rules, $messages);
         $vhelper = new ValidationHelper($methodName, $validator);
         if ($vhelper->hasErrors) {
             (new ErrorResponse())

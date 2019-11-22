@@ -14,7 +14,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 abstract class BaseError implements iError {
     public $message;
     public $code;
-    public $description = '';
+    public $description = [];
     public $httpCode = 400;
     public $request = [];
 
@@ -44,6 +44,16 @@ abstract class BaseError implements iError {
 
     public function setDescription($desc) {
         $this->description = $desc;
+        return $this;
+    }
+
+    public function appendDescription(array $data) {
+        if (is_string($this->description)) {
+            $this->description = [
+                'desc' => $this->description
+            ];
+        }
+        $this->description = array_merge($this->description, $data);
         return $this;
     }
 

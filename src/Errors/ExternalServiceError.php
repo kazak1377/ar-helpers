@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Errors;
+namespace ArHelpers\Errors;
 
 
 use ArHelpers\Error\BaseError;

@@ -12,7 +12,8 @@ class CreatedResponse extends BaseResponse {
 	public $code = 201;
 	public $message = "successfully created";
 
-	public function __construct($entityName) {
+	public function __construct($entityName, $entityData = null) {
 		$this->message = $entityName. " ". $this->message;
+		$this->data = $entityData;
 	}
 }

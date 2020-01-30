@@ -12,8 +12,9 @@ class UpdatedResponse extends BaseResponse {
 	public $code = 200;
 	public $message = "successfully updated";
 
-	public function __construct($entityName, $entityId) {
+	public function __construct($entityName, $entityId, $entityData = null) {
 		$this->message =
 			$entityName . "(" . $entityId . ") " . $this->message;
+		$this->data = $entityData;
 	}
 }

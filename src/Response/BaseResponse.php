@@ -20,6 +20,7 @@ abstract class BaseResponse {
 	public $code = 200;
 	public $message = "OK";
 	public $data = NULL;
+	public $errorCode = 0;
 	/** @var null|BaseError|array */
 	public $error = null;
 
@@ -33,6 +34,7 @@ abstract class BaseResponse {
 		return [
 			'code' => $this->code,
 			'message' => $this->message,
+            'errorCode' => $this->errorCode,
 			'data' => $this->data,
 			'error' => $this->error,
 			'warnings' => $this->warnings
@@ -68,6 +70,7 @@ abstract class BaseResponse {
 		$this->error = $error;
 		$this->code = $error->httpCode;
 		$this->message = $error->message;
+		$this->errorCode = $error->code;
 		return $this;
 	}
 
@@ -76,6 +79,15 @@ abstract class BaseResponse {
 	        return $this->setError($error);
         }
 	    return $this;
+    }
+
+    public function useLastError($data = null) {
+	    $data = $data ?? $this->toArray();
+	    if (!empty($data['error'])) {
+            $this->message = $data['error']['message'];
+            $this->errorCode = $data['error']['code'];
+            $this->useLastError($data['error']['description']);
+        }
     }
 
 	public function json() {

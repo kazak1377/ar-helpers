@@ -86,8 +86,9 @@ abstract class BaseResponse {
 	    if (!empty($data['error'])) {
             $this->message = $data['error']['message'];
             $this->errorCode = $data['error']['code'];
-            $this->useLastError($data['error']['description']);
+            return $this->useLastError($data['error']['description']);
         }
+	    return $this;
     }
 
 	public function json() {

@@ -79,8 +79,6 @@ if (! function_exists('response')) {
 			return $factory;
 		}
 
-		/** @noinspection PhpMethodParametersCountMismatchInspection */
-		/** @noinspection PhpParamsInspection */
-		return $factory->make($content, $status, $headers);
+        return $factory->make($content, $status, $headers);
 	}
 }

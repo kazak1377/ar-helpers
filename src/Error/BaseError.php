@@ -8,8 +8,7 @@
 
 namespace ArHelpers\Error;
 
-
-use Illuminate\Contracts\Container\BindingResolutionException;
+use Throwable;
 
 abstract class BaseError implements iError {
     public $message;
@@ -25,10 +24,10 @@ abstract class BaseError implements iError {
     public function __construct() {
         try {
             $this->code = config(
-                    'app.errorPrefix',
-                    env('APP_ERROR_PREFIX', 'unset')
-                ) . $this->code;
-        } catch (BindingResolutionException $e) {
+                'app.errorPrefix',
+                env('APP_ERROR_PREFIX', 'unset')
+            ) . $this->code;
+        } catch (Throwable $e) {
             $this->code = "00" . $this->code;
         }
     }

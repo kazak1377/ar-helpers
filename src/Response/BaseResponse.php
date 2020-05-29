@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Request;
+use Throwable;
 
 abstract class BaseResponse {
 	public $code = 200;
@@ -86,7 +87,12 @@ abstract class BaseResponse {
 	    if (!empty($data['error'])) {
             $this->message = $data['error']['message'];
             $this->errorCode = $data['error']['code'];
-            return $this->useLastError($data['error']['description']);
+            try {
+                return $this->useLastError($data['error']['description']);
+            } catch (Throwable $e) {
+                return $this->useLastError($data['error']['desc']);
+            }
+
         }
 	    return $this;
     }

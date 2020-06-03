@@ -87,6 +87,7 @@ abstract class BaseResponse {
 	    if (!empty($data['error'])) {
             $this->message = $data['error']['message'];
             $this->errorCode = $data['error']['code'];
+            $this->error = $data['error'];
             try {
                 return $this->useLastError($data['error']['description']);
             } catch (Throwable $e) {

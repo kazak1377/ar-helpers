@@ -29,7 +29,15 @@ class ValidationHelper {
 			$this->validator = $validator;
 			$this->hasErrors = true;
 			$this->error = new ValidationError($entityName);
-			$this->error->description = $validator->errors()->toArray();
+            $this->error->description = self::formatingErrors($validator->errors()->toArray());
 		}
 	}
+
+    private static function formatingErrors($errorMessages) {
+        $resultErrors = [];
+        foreach ($errorMessages as $key => $errorMessage) {
+            $resultErrors = array_merge($errorMessage, $resultErrors);
+        }
+        return $resultErrors;
+    }
 }

@@ -21,7 +21,7 @@ abstract class BaseResponse {
 	public $code = 200;
 	public $message = "OK";
 	public $data = NULL;
-	public $errorCode = 0;
+	public $errorCode = "0";
 	/** @var null|BaseError|array */
 	public $error = null;
 
